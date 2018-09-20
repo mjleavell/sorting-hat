@@ -28,22 +28,24 @@ const printToDom = (stringToPrint, elementId) => {
 };
 
 const letsGetStartedClick = () => {
-    let formString =
-    `<form class="w-75 mx-5">
-    <h3>Enter First Year's Name</h3>
-    <div class="form-row">
-        <div class="col-md-auto">
-        <label for="student-name" class="col-form-label mx-0">Student Name</label>
+    document.getElementById('start-button').addEventListener('click', () => {
+        let formString =
+        `<form class="w-50 mx-auto">
+        <h3>Enter First Year's Name</h3>
+        <div class="form-row">
+            <div class="col-md-auto">
+            <label for="student-name" class="col-form-label mx-0">Student Name</label>
+            </div>
+            <div class="col-6">
+            <input type="text" class="form-control" id="student-name" placeholder="Full Name">
+            </div>
+            <div class="col">
+            <button type="submit" class="btn btn-primary">Sort Me!</button>
+            </div>
         </div>
-        <div class="col-6">
-        <input type="text" class="form-control" id="student-name" placeholder="Full Name">
-        </div>
-        <div class="col">
-        <button type="submit" class="btn btn-primary">Sort Me!</button>
-        </div>
-    </div>
-    </form>`;
-    printToDom(formString, 'studentForm');
+        </form>`;
+        printToDom(formString, 'studentForm');
+    })
 }
 
 
