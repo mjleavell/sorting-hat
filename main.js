@@ -1,32 +1,35 @@
 // VARIABLES
 const sortingHat = [
     {
-        houseName: "gryffindor",
-        houseColor: "scarlet",
-        houseText: "gold"
+        houseName: "Gryffindor",
+        houseColor: "rgb(174,0,1)",
+        houseText: "rgb(238,186,48)"
     },
     {
-        houseName: "hufflepuff",
-        houseColor: "yellow",
-        houseText: "black"
+        houseName: "Hufflepuff",
+        houseColor: "rgb(240,199,94)",
+        houseText: "rgb(114,98,85)"
     },
     {
-        houseName: "ravenclaw",
-        houseColor: "blue",
-        houseText: "bronze"
+        houseName: "Ravenclaw",
+        houseColor: "rgb(34,47,91)",
+        houseText: "rgb(148,107,45)"
     },
     {
-        houseName: "slytherin",
-        houseColor: "green",
-        houseText: "silver"
+        houseName: "Slytherin",
+        houseColor: "rgb(42,98,61)",
+        houseText: "rgb(170,170,170)"
     }
 ];
-
-const studentNameInputElem = document.getElementById('student-name');
 
 const printToDom = (stringToPrint, elementId) => {
     const selectedDiv = document.getElementById(elementId);
     selectedDiv.innerHTML = stringToPrint;
+};
+
+const printMultipleToDom = (stringToPrint, elementId) => {
+    const selectedDiv = document.getElementById(elementId);
+    selectedDiv.innerHTML += stringToPrint;
 };
 
 const letsGetStartedClick = () => {
@@ -39,7 +42,7 @@ const letsGetStartedClick = () => {
                     <label for="student-name" class="col-form-label mx-0">Student Name</label>
                 </div>
                 <div class="col-6">
-                    <input type="text" class="form-control" id="student-name" placeholder="Full Name">
+                    <input type="text" class="form-control" id="studentName" placeholder="Full Name">
                 </div>
                 <div class="col">
                     <button type="submit" class="btn btn-primary" id="sort-house-btn">Sort Me!</button>
@@ -51,42 +54,23 @@ const letsGetStartedClick = () => {
 }
 
 const getRandomHouse = () => {
-    document.addEventListener('click', (e) => {
+    document.getElementById('student-form').addEventListener('click', (e) => {
+        e.preventDefault();
         if (e.target.id === "sort-house-btn") {
             let randomHouse = sortingHat[Math.floor(Math.random() * 4)];
             console.log(randomHouse.houseName);
             let cardString = `
             <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-name">${studentNameInputElem.value}</h5>
+                <div class="card-body" style="background-color:${randomHouse.houseColor}; color:${randomHouse.houseText}; border: 3px outset ${randomHouse.houseColor};">
+                    <h3 class="card-name">${studentName.value}</h3>
                     <p class="card-house">${randomHouse.houseName}</p>
                     <button type="submit" class="btn btn-primary" id="expel-btn">Expel</button>
                 </div>
             </div>`;
-            printToDom(cardString, 'student-card-result');
+            printMultipleToDom(cardString, 'student-card-result');
         }
     })
 }
-        // for (let i = 0; i < sortingHat.houseName.length; i++){
-            // console.log(sortingHat.houseName[i].value);
-        // }
-//         let sortingHatKeys = Object.keys(sortingHat);
-//         let randomHouse = Math.random() * 4);
-//         // let randomHouse - sortingHat[Math.floor(Math.random())*4];
-//         console.log('house', randomHouse);
-//     //     for (let i = 0; i < e.length; i++){
-    //         let cardString = `
-    //         <div class="card" style="width: 18rem;">
-    //             <div class="card-body">
-    //                 <h5 class="card-name">${studentNameInputElem.value}</h5>
-    //                 <p class="card-house">${sortingHat[i].houseName}</p>
-    //                 <button href="#" class="btn btn-primary" id="expel-btn">Expel</button>
-    //             </div>
-    //         </div>`;
-    //         printToDom(cardString, 'student-card-result');
-    //     }
-
-
 
 // FUNCTIONS
 letsGetStartedClick();
