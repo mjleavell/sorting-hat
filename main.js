@@ -49,7 +49,7 @@ const letsGetStartedClick = () => {
                     <input type="text" class="form-control" id="studentName" placeholder="Full Name">
                 </div>
                 <div class="col">
-                    <button type="submit" class="btn btn-primary" id="sort-house-btn">Sort Me!</button>
+                    <button type="submit" class="btn btn-secondary" id="sort-house-btn">Sort Me!</button>
                 </div>
             </div>
         </form>`;
@@ -63,21 +63,32 @@ const getRandomHouse = () => {
         document.getElementById('student-form').value = "";
         if (e.target.id === "sort-house-btn") {
             let randomHouse = sortingHat[Math.floor(Math.random() * 4)];
-            console.log(randomHouse.houseName);
             let cardString = `
             <div class="card">
                 <img class="card-img-top" src="${randomHouse.houseImage}" alt="Card image cap">
                 <div class="card-body" style="background-color:${randomHouse.houseColor}; color:${randomHouse.houseText}; border: 3px solid ${randomHouse.houseColor};">
                     <h3 class="card-name">${studentName.value}</h3>
                     <p class="card-house">${randomHouse.houseName}</p>
-                    <button type="submit" class="btn btn-primary" id="expel-btn">Expel</button>
+                    <button type="submit" class="btn btn-secondary expel-btn">Expel</button>
                 </div>
             </div>`;
             printMultipleToDom(cardString, 'student-card-result');
             document.getElementById('studentName').value='';
+            expelStudent();
         }
     })
 }
+
+const expelStudent = () => {
+    const expelButtons = document.getElementsByClassName('expel-btn');
+    for (let i = 0; i < expelButtons.length; i++) {
+        const element = expelButtons[i];
+        element.addEventListener('click', (e) => {
+            const cardToDelete = e.target.parentNode.parentNode;
+            cardToDelete.remove();
+            })
+        }
+    }
 
 // FUNCTIONS
 letsGetStartedClick();
