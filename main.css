@@ -1,3 +1,7 @@
+body {
+    margin-bottom: 30px;
+}
+
 .card {
     margin: 20px;
 }
@@ -6,3 +10,7 @@
     height: 325px;
     width: 288px;
 }
+
+input:invalid:focus {
+    box-shadow: 0 0 5px 1px red;
+  }
