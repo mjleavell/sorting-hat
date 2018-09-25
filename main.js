@@ -111,7 +111,7 @@ const expelStudent = () => {
 const voldemortArmy = (name) => {
     let expelCard = `
     <div class="card army-card">
-        <img class="card-img-top" src="./images/voldemort.jpg" alt="Card image cap">
+        <img class="card-img-top" src="./images/voldemort1.jpg" alt="Card image cap">
         <div class="card-body" style="background-color:${voldemort.houseColor}; color:${voldemort.houseText};">
             <h3 class="card-name">${name}</h3>
             <p class="card-house">Voldemort's Army</p>
