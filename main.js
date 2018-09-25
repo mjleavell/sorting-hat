@@ -26,6 +26,13 @@ const sortingHat = [
     }
 ];
 
+let voldemort = {
+    houseName: "Voldemort's Army",
+    houseColor: "rgb(105,105,105)",
+    houseText: "rgb(101,198,82)",
+    houseImage: "../images/voldemort.jpg"
+};
+
 const sortBtn = document.getElementById('sort-house-btn');
 
 const printToDom = (stringToPrint, elementId) => {
@@ -41,7 +48,7 @@ const printMultipleToDom = (stringToPrint, elementId) => {
 const letsGetStartedClick = () => {
     document.getElementById('start-button').addEventListener('click', (e) => {
         let formString =
-            `<form class="w-50 mx-auto">
+            `<form>
                 <h3>Enter First Year's Name</h3>
                 <div class="form-row">
                     <div class="col-md-auto">
@@ -73,7 +80,7 @@ const getRandomHouse = () => {
                 let cardString = `
                 <div class="card">
                     <img class="card-img-top" src="${randomHouse.houseImage}" alt="Card image cap">
-                    <div class="card-body" style="background-color:${randomHouse.houseColor}; color:${randomHouse.houseText}; border: 3px solid ${randomHouse.houseColor};">
+                    <div class="card-body" style="background-color:${randomHouse.houseColor}; color:${randomHouse.houseText};">
                         <h3 class="card-name">${studentName.value}</h3>
                         <p class="card-house">${randomHouse.houseName}</p>
                         <button type="submit" class="btn btn-secondary expel-btn">Expel</button>
@@ -91,12 +98,26 @@ const getRandomHouse = () => {
 const expelStudent = () => {
     const expelButtons = document.getElementsByClassName('expel-btn');
     for (let i = 0; i < expelButtons.length; i++) {
-        const element = expelButtons[i];
-        element.addEventListener('click', (e) => {
+        const expel = expelButtons[i];
+        expel.addEventListener('click', (e) => {
             const cardToDelete = e.target.parentNode.parentNode;
+            const name = e.target.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML;
             cardToDelete.remove();
+            voldemortArmy(name);
         })
     }
+}
+
+const voldemortArmy = (name) => {
+    let expelCard = `
+    <div class="card army-card">
+        <img class="card-img-top" src="./images/voldemort.jpg" alt="Card image cap">
+        <div class="card-body" style="background-color:${voldemort.houseColor}; color:${voldemort.houseText};">
+            <h3 class="card-name">${name}</h3>
+            <p class="card-house">Voldemort's Army</p>
+        </div>
+    </div>`;
+    printMultipleToDom(expelCard, "voldemort-army");
 }
 
 // FUNCTIONS
